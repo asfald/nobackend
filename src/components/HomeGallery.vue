@@ -1,93 +1,57 @@
 <template>
-  <div class="max-w-screen-xl h-auto flex flex-col justify-center">
-    <div class="carousel flex ">
-      <div id="slide1" class="carousel-item relative w-full">
-        <a href="#slide4" class="flex"
-          ><img
-            class="w-24 h-auto rotate-180"
-            src="./../assets/svg/arrow_right.svg"
-            alt="arrow"
-        /></a>
-        <img
-          src="./../assets/img/carousel/0.jpg"
-          class="lg:max-w-2xl md:max-w-xl max-w-xs h-auto m-auto"
-        />
-
-        <a href="#slide2" class="flex"
-          ><img
-            class="w-24 h-auto"
-            src="./../assets/svg/arrow_right.svg"
-            alt="arrow"
-        /></a>
-      </div>
-      <div id="slide2" class="carousel-item relative w-full">
-        <a href="#slide1" class="flex"
-          ><img
-            class="w-24 h-auto rotate-180"
-            src="./../assets/svg/arrow_right.svg"
-            alt="arrow"
-        /></a>
-        <img
-          src="./../assets/img/carousel/12.jpg"
-          class="lg:max-w-2xl md:max-w-xl max-w-xs h-auto m-auto"
-        />
-
-        <a href="#slide3" class="flex"
-          ><img
-            class="w-24 h-auto"
-            src="./../assets/svg/arrow_right.svg"
-            alt="arrow"
-        /></a>
-      </div>
-      <div id="slide3" class="carousel-item relative w-full">
-        <a href="#slide2" class="flex"
-          ><img
-            class="w-24 h-auto rotate-180"
-            src="./../assets/svg/arrow_right.svg"
-            alt="arrow"
-        /></a>
-        <img src="./../assets/img/carousel/10.jpg" class="lg:max-w-2xl md:max-w-xl max-w-xs h-auto m-auto" />
-        <a href="#slide4" class="flex"
-          ><img
-            class="w-24 h-auto"
-            src="./../assets/svg/arrow_right.svg"
-            alt="arrow"
-        /></a>
-      </div>
-      <div id="slide4" class="carousel-item relative w-full">
-        <a class="flex" href="#slide3"
-          ><img
-            class="w-24 h-auto rotate-180"
-            src="./../assets/svg/arrow_right.svg"
-            alt="arrow"
-        /></a>
-        <img src="./../assets/img/carousel/11.jpg" class="lg:max-w-2xl md:max-w-xl max-w-xs h-auto m-auto" />
-
-        <a class="flex" href="#slide1">
-          <img
-            class="w-24 h-auto"
-            src="./../assets/svg/arrow_right.svg"
-            alt="arrow"
-        /></a>
-      </div>
-    </div>
+  <div class="h-auto flex flex-col justify-center">
+    <swiper
+      :slidesPerView="1"
+      :spaceBetween="30"
+      :pagination="{
+        type: 'progressbar',
+      }"
+      :navigation="true"
+      :modules="modules"
+      class="mySwiper"
+    >
+      <swiper-slide v-for="(item, index) in pics" :key="index">
+        <div>
+          <div>
+            <img :src="item.img" />
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper>
     <div>
-        <router-link to="/galleryview"> <p class="uppercase underline flex justify-center pt-12 font-bold">vaata lisaks</p></router-link>
+      <router-link to="/galleryview">
+        <p class="uppercase underline flex justify-center pt-12 font-bold">
+          vaata lisaks
+        </p></router-link
+      >
     </div>
-          
   </div>
-  
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Pagination, Navigation } from "swiper";
+import "swiper/css";
+import "./swiper.css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 export default defineComponent({
   name: "HomeGallery",
-  components: {},
+  components: { Swiper, SwiperSlide, Pagination, Navigation },
   setup() {
-    return {};
+    const pics = [
+      {img:"../images/5.jpg"},
+      {img:"../images/1.jpg"},
+      {img:"../images/2.jpg"},
+      {img:"../images/3.jpg"},
+      {img:"../images/4.jpg"},
+     
+      ];
+    return {pics,
+      modules: [Pagination, Navigation]
+    };
   },
 });
 </script>
