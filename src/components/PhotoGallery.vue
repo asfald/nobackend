@@ -54,23 +54,22 @@ import "swiper/css";
 import "./swiper.css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import FsLightbox from "fslightbox-vue";
+
 
 export default defineComponent({
   name: "PhotoGallery",
   components: {
-    FsLightbox,
-    Swiper,
+      Swiper,
     SwiperSlide,
   },
   data() {
     return {
       storeitems: [],
-      imageLink: "http://localhost:1337",
+      imageLink: "https://strapi-backend-2qa8.onrender.com",
     };
   },
   mounted() {
-    fetch("http://localhost:1337/api/storeitems?populate=*")
+    fetch("https://strapi-backend-2qa8.onrender.com/api/storeitems?populate=*")
       .then((res) => res.json())
       .then((res) => {
         this.storeitems = res.data;

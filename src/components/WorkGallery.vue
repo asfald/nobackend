@@ -63,11 +63,11 @@ export default defineComponent({
   data() {
     return {
       workitems: [],
-      imageLink: "http://localhost:1337",
+      imageLink: "https://strapi-backend-2qa8.onrender.com",
     };
   },
   mounted() {
-    fetch("http://localhost:1337/api/workitems?populate=*")
+    fetch("https://strapi-backend-2qa8.onrender.com/api/workitems?populate=*")
       .then((res) => res.json())
       .then((res) => {
         this.workitems = res.data;

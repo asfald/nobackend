@@ -4,11 +4,6 @@ import router from './router'
 import './assets/css/input.css'
 
 
-
-
-
-
-
 const app = createApp(App)
 
 app.use(router)
