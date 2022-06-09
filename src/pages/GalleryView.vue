@@ -1,12 +1,13 @@
 <template>
-<Container size="extra-large">
-  <div class="m-auto flex flex-col justify-center gap-y-24">
-    <NavBar />
-    <PhotoGallery />
-    <WorkGallery class="pb-24" />
-    <Footer  />
-  </div>
-</Container>
+  <Container size="extra-large">
+    <div class="m-auto flex flex-col justify-center gap-y-24">
+      <NavBar />
+      <WorkGallery />
+      <PhotoGallery class="pb-24" />
+
+      <Footer />
+    </div>
+  </Container>
 </template>
 
 <script lang="ts">

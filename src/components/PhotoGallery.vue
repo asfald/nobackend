@@ -10,7 +10,7 @@
           font-bold
         "
       >
-        fotograafia
+        graafiline disain
       </h1>
     </div>
     <swiper
@@ -23,18 +23,17 @@
       :modules="modules"
       class="mySwiper"
     >
-      <swiper-slide v-for="item in storeitems" :key="item.id">
+      <swiper-slide v-for="(item, index) in photoitems" :key="index">
         <div>
           <div class="md:h-96 h-40">
-            <img :src="imageLink + item.attributes.img.data.attributes.url" />
+            <img :src="item.img" />
           </div>
-
-          <div class="space-y-4 pt-2 h-20">
+          <div class="space-y-4 pt-2">
             <p class="font-roboto uppercase font-bold text-base md:text-xl">
-              {{ item.attributes.tekst }}
+              {{ item.text }}
             </p>
             <p class="font-roboto uppercase text-xs md:text-lg">
-              {{ item.attributes.paragraph }}
+              {{ item.paragraph }}
             </p>
           </div>
         </div>
@@ -59,23 +58,17 @@ export default defineComponent({
     Swiper,
     SwiperSlide,
   },
-  data() {
-    return {
-      storeitems: [],
-      imageLink: "https://strapi-backend-2qa8.onrender.com",
-    };
-  },
-  mounted() {
-    fetch("https://strapi-backend-2qa8.onrender.com/api/storeitems?populate=*")
-      .then((res) => res.json())
-      .then((res) => {
-        this.storeitems = res.data;
-      });
-  },
+
   setup() {
-    return {
-      modules: [Pagination, Navigation],
-    };
+    const photoitems = [
+      { img: "../workgallery/11.jpg", paragraph: "adobe ps", text: "ufod" },
+      { img: "../workgallery/12.jpg", paragraph: "adobe ps", text: "infoks" },
+      { img: "../workgallery/13.jpg", paragraph: "adobe ps", text: "mustrid" },
+      { img: "../workgallery/14.jpg", paragraph: "adobe ps", text: "värvid" },
+      { img: "../workgallery/15.jpg", paragraph: "adobe ai", text: "art deco" },
+      { img: "../workgallery/17.jpg", paragraph: "adobe ai", text: "logo" },
+    ];
+    return { photoitems, modules: [Pagination, Navigation] };
   },
 });
 </script>

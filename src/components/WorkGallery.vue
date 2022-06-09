@@ -10,11 +10,11 @@
           font-bold
         "
       >
-        graafiline disain
+        fotograafia
       </h1>
     </div>
     <swiper
-      :slidesPerView="4"
+      :slidesPerView="3"
       :spaceBetween="8"
       :pagination="{
         type: 'progressbar',
@@ -23,19 +23,19 @@
       :modules="modules"
       class="mySwiper"
     >
-      <swiper-slide v-for="item in workitems" :key="item.id">
+      <swiper-slide v-for="(item, index) in workitems" :key="index">
         <div>
-          <div class="md:h-96 h-40">
+          <div>
             <img
-              :src="imageLink + item.attributes.img.data[0].attributes.url"
+              :src="item.img"
             />
           </div>
           <div class="space-y-4 pt-2">
             <p class="font-roboto uppercase font-bold text-base md:text-xl">
-              {{ item.attributes.tekst }}
+              {{ item.text }}
             </p>
             <p class="font-roboto uppercase text-xs md:text-lg">
-              {{ item.attributes.paragraph }}
+              {{ item.paragraph }}
             </p>
           </div>
         </div>
@@ -60,21 +60,23 @@ export default defineComponent({
     Swiper,
     SwiperSlide,
   },
-  data() {
-    return {
-      workitems: [],
-      imageLink: "https://strapi-backend-2qa8.onrender.com",
-    };
-  },
-  mounted() {
-    fetch("https://strapi-backend-2qa8.onrender.com/api/workitems?populate=*")
-      .then((res) => res.json())
-      .then((res) => {
-        this.workitems = res.data;
-      });
-  },
+  
+
   setup() {
-    return {
+
+    const workitems=[
+      {img:"../images/0.jpg", paragraph:"kaamera:bronica etrsi", text:"viru raba"},
+      {img:"../images/1.jpg", paragraph:"kaamera:bronica etrsi", text:"edinburgh"},
+     
+      {img:"../images/3.jpg", paragraph:"kaamera:bronica etrsi", text:"lohusuu"},
+      {img:"../images/4.jpg", paragraph:"kaamera:bronica etrsi", text:"laitse"},
+      {img:"../images/5.jpg", paragraph:"kaamera:bronica etrsi", text:"rakvere"},
+      {img:"../images/6.jpg", paragraph:"kaamera:bronica etrsi", text:"viru raba"},
+      {img:"../images/7.jpg", paragraph:"kaamera:bronica etrsi", text:"kiviõli"},
+      {img:"../images/8.jpg", paragraph:"kaamera:bronica etrsi", text:"ben nevis"},
+      {img:"../images/9.jpg", paragraph:"kaamera:bronica etrsi", text:"mahu rand"},
+    ]
+    return {workitems,
       modules: [Pagination, Navigation],
     };
   },
